@@ -1,4 +1,4 @@
-import type { menuItem, OrderItem } from "../types"
+import type { menuItem} from "../types"
 
 type menuProps = {
     menu: menuItem;

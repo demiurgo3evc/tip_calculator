@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import type { OrderItem } from "../types"
 import { formatCurrency } from "../helpers"
 
