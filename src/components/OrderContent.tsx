@@ -1,12 +1,14 @@
 import type { OrderItem } from "../types"
 import { formatCurrency } from "../helpers"
+import type { Dispatch } from "react";
+import type { CalculatorAction } from "../reducer/calculatorReducer";
 
 type OrderProps = {
     order: OrderItem[];
-    deleItemOrden: (id: OrderItem['id']) => void;
+    dispatch: Dispatch<CalculatorAction>
 }
 
-export default function OrderContent({ order, deleItemOrden }: OrderProps) {
+export default function OrderContent({ order, dispatch }: OrderProps) {
 
 
     return (
@@ -24,7 +26,7 @@ export default function OrderContent({ order, deleItemOrden }: OrderProps) {
                                 Cantidad: {item?.quantity}-{formatCurrency(item.price * item.quantity)}
                             </p>
                         </div>
-                        <button onClick={() => deleItemOrden(item.id)} className="bg-red-600 w-8 h-8 text-white rounded-md">
+                        <button onClick={() => dispatch({type:"remove-item",payload:{id:item.id}})} className="bg-red-600 w-8 h-8 text-white rounded-md">
                             X
                         </button>
                     </div>

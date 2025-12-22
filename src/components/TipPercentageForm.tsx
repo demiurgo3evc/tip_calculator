@@ -1,3 +1,5 @@
+import type { Dispatch } from "react"
+import type { CalculatorAction } from "../reducer/calculatorReducer"
 
 const tipOptions = [
     {
@@ -18,26 +20,27 @@ const tipOptions = [
 ]
 
 type Props={
-    setTip:React.Dispatch<React.SetStateAction<number>>
+    dispatch:Dispatch<CalculatorAction>
     tip:number
 }
 
-export default function TipPercentageForm({setTip,tip}:Props) {
+export default function TipPercentageForm({dispatch}:Props) {
     return (
         <div className="font-bold text-2xl">
             <h3>Propina: </h3>
             <form action="">
                 {tipOptions.map(tipOption => (
-                    <div key={tipOption.id} className="flex items-center gap-2">
+                   
+                   <div key={tipOption.id} className="flex items-center gap-2">
                         <label className="text-base" htmlFor={tipOption.id}>{tipOption.label}</label>
 
                         <input
-                           onChange={e=>setTip(+e.target.value)}
+                           onChange={e=>dispatch({type:"tip",payload:{tip:+e.target.value}})}
                             type="radio"
                             name="tip"
                             id={tipOption.id}
                             value={tipOption.value}
-                            checked={tipOption.value==tip}
+                            //checked={tipOption.value==tip}
                         />
 
                     </div>
